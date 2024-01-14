@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Nowa Hurtownia</title>
+</head>
+<body>
+<div align="center">
+  <!--Page header-->
+  <h1>Wprowadź nową hurtownię</h1>
+
+    <br/>
+
+    <form action="#" th:action="@{/save}" th:objects="${hurtownia}" method="post">
+      <!--Table-->
+      <table border="1" cellpadding="10">
+        <tr>
+          <td>Nr hurtowni</td>
+          <td><input type="text" th:fields="*{nrHurtowni}"></td>
+        </tr>
+        <tr>
+          <td>Nazwa</td>
+          <td><input type="text" th:fields="*{nazwa}"></td>
+        </tr>
+        <tr>
+          <td>Data założenia</td>
+          <td><input type="text" th:fields="*{dataZalozenia}"></td>
+        </tr>
+        <tr>
+          <td>Nr adresu</td>
+          <td><input type="text" th:fields="*{nrAdresu}"></td>
+        </tr>
+        <tr>
+          <td colspan="2"><button type="submit">Save</button></td>
+        </tr>
+
+      </table>
+    </form>
+
+
+</div>
+</body>
+</html>
