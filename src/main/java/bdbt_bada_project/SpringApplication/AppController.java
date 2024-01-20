@@ -55,14 +55,14 @@ public class AppController implements WebMvcConfigurer {
             /* Import java.util.List */
             List<Hurtownia> listHurtownia = dao.list();
             model.addAttribute("listHurtownia", listHurtownia);
-            return "tabela_hurtownie";
+            return "admin/tabela_hurtownie";
         }
 
         @RequestMapping("/newHurtownie")
         public String showNewFormHurtownie(Model model){
             Hurtownia hurtownia = new Hurtownia();
             model.addAttribute("hurtownia", hurtownia);
-            return "new_form_hurtownie";
+            return "admin/new_form_hurtownie";
         }
 
         @RequestMapping(value = "/saveHurtownie", method = RequestMethod.POST)
@@ -73,7 +73,7 @@ public class AppController implements WebMvcConfigurer {
 
         @RequestMapping("/editHurtownie/{nrHurtowni}")
         public ModelAndView showEditFormHurtownie(@PathVariable(name = "nrHurtowni") int nrHurtowni) {
-            ModelAndView mav = new ModelAndView("edit_form_hurtownie");
+            ModelAndView mav = new ModelAndView("admin/edit_form_hurtownie");
             Hurtownia hurtownia = dao.getHurtownie(nrHurtowni);
             mav.addObject("hurtownia", hurtownia);
 
@@ -100,14 +100,14 @@ public class AppController implements WebMvcConfigurer {
             /* Import java.util.List */
             List<Produkt> listProdukt = daoP.list();
             model.addAttribute("listProdukt", listProdukt);
-            return "tabela_produkty";
+            return "admin/tabela_produkty";
         }
 
         @RequestMapping("/newProdukty")
         public String showNewFormProdukty(Model model){
             Produkt produkt = new Produkt();
             model.addAttribute("produkt", produkt);
-            return "new_form_produkty";
+            return "admin/new_form_produkty";
         }
 
         @RequestMapping(value = "/saveProdukty", method = RequestMethod.POST)
@@ -118,7 +118,7 @@ public class AppController implements WebMvcConfigurer {
 
         @RequestMapping("/editProdukty/{nrProduktu}")
         public ModelAndView showEditFormProdukty(@PathVariable(name = "nrProduktu") int nrProduktu) {
-            ModelAndView mav = new ModelAndView("edit_form_produkty");
+            ModelAndView mav = new ModelAndView("admin/edit_form_produkty");
             Produkt produkt = daoP.getProdukty(nrProduktu);
             mav.addObject("produkt", produkt);
 
@@ -145,14 +145,14 @@ public class AppController implements WebMvcConfigurer {
             /* Import java.util.List */
             List<Klient> listKlient = daoK.list();
             model.addAttribute("listKlient", listKlient);
-            return "tabela_klienci";
+            return "admin/tabela_klienci";
         }
 
         @RequestMapping("/newKlienci")
         public String showNewFormKlienci(Model model){
             Klient klient = new Klient();
             model.addAttribute("klient", klient);
-            return "new_form_klienci";
+            return "admin/new_form_klienci";
         }
 
         @RequestMapping(value = "/saveKlienci", method = RequestMethod.POST)
@@ -163,7 +163,7 @@ public class AppController implements WebMvcConfigurer {
 
         @RequestMapping("/editKlienci/{nrKlienta}")
         public ModelAndView showEditFormKlienci(@PathVariable(name = "nrKlienta") int nrKlienta) {
-            ModelAndView mav = new ModelAndView("edit_form_klienci");
+            ModelAndView mav = new ModelAndView("admin/edit_form_klienci");
             Klient klient = daoK.getKlienci(nrKlienta);
             mav.addObject("klient", klient);
 
