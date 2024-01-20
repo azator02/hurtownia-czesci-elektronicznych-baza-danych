@@ -43,13 +43,26 @@ class HurtowniaDAOTest extends Object {
 
     @Test
     void get() {
+        int nrHurtowni = 121;
+        Hurtownia hurtownia = dao.get(nrHurtowni);
+        System.out.println(hurtownia);
+        assertNotNull(hurtownia);
     }
 
     @Test
     void update() {
+        Hurtownia hurtownia = new Hurtownia();
+        hurtownia.setNrHurtowni(200);
+        hurtownia.setNazwa("Dobra pizza");
+        hurtownia.setDataZalozenia(LocalDate.of(1927,7,20));
+        hurtownia.setNrAdresu(119);
+
+        dao.update(hurtownia);
     }
 
     @Test
     void delete() {
+        int nrHurtowni = 200;
+        dao.delete(nrHurtowni);
     }
 }
