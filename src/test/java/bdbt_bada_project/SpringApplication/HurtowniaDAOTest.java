@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -38,13 +37,13 @@ class HurtowniaDAOTest extends Object {
     void save() {
         //Date data = new Date(27, 0, 20);
         Hurtownia hurtownia = new Hurtownia(200, "Grzybki", LocalDate.of(1927,7,16), 119);
-        dao.save(hurtownia);
+        dao.saveHurtownie(hurtownia);
     }
 
     @Test
     void get() {
         int nrHurtowni = 121;
-        Hurtownia hurtownia = dao.get(nrHurtowni);
+        Hurtownia hurtownia = dao.getHurtownie(nrHurtowni);
         System.out.println(hurtownia);
         assertNotNull(hurtownia);
     }
@@ -57,12 +56,12 @@ class HurtowniaDAOTest extends Object {
         hurtownia.setDataZalozenia(LocalDate.of(1927,7,20));
         hurtownia.setNrAdresu(119);
 
-        dao.update(hurtownia);
+        dao.updateHurtownie(hurtownia);
     }
 
     @Test
     void delete() {
         int nrHurtowni = 200;
-        dao.delete(nrHurtowni);
+        dao.deleteHurtownie(nrHurtowni);
     }
 }

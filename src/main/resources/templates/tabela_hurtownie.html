@@ -9,10 +9,10 @@
 
 <div align="center">
   <!--Page header-->
-  <h1>Hurtownieeee</h1>
+  <h1>Hurtownie</h1>
 
   <!--Entry to new page-->
-  <a href="/new">Wprowadź nową hurtownie</a>
+  <a href="/newHurtownie">Wprowadź nową hurtownie</a>
 
   <!--Break line-->
   <br/><br/>
@@ -27,7 +27,7 @@
       <th>Nazwa</th>
       <th>Data założenia</th>
       <th>Nr adresu</th>
-      <th>Action</th>
+      <th>Działanie</th>
     </tr>
     </thead>
     <!-- Table body -->
@@ -38,9 +38,9 @@
       <td th:text = "${hurtownia.dataZalozenia}">Data założenia</td>
       <td th:text = "${hurtownia.nrAdresu}">Nr adresu</td>
       <td>
-        <a th:href="@{'edit/' + ${hurtownia.nrHurtowni}}">Edytuj</a>
+        <a th:href="@{'editHurtownie/' + ${hurtownia.nrHurtowni}}">Edytuj</a>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <a th:href="@{'delete/' + ${hurtownia.nrHurtowni}}">Usuń</a>
+        <a th:href="@{'deleteHurtownie/' + ${hurtownia.nrHurtowni}}">Usuń</a>
       </td>
     </tr>
     </tbody>

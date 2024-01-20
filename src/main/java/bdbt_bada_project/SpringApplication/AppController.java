@@ -34,7 +34,7 @@ public class AppController implements WebMvcConfigurer {
         @RequestMapping("/main")
         public String defaultAfterLogin(HttpServletRequest request) {
             if (request.isUserInRole("ADMIN")) {
-                return "redirect:/tabela_hurtownie";  // "redirect:/main_admin";
+                return "redirect:/main_admin";
             }
             else if (request.isUserInRole("USER")) {
                 return "redirect:/main_user";
@@ -45,52 +45,177 @@ public class AppController implements WebMvcConfigurer {
         }
         @Autowired
         private HurtowniaDAO dao;
+        @Autowired
+        private ProduktDAO daoP;
+        @Autowired
+        private KlientDAO daoK;
 
         @RequestMapping("/tabela_hurtownie")
-        public String viewHomePage(Model model) {
+        public String viewAdminHurtownie(Model model) {
             /* Import java.util.List */
             List<Hurtownia> listHurtownia = dao.list();
             model.addAttribute("listHurtownia", listHurtownia);
             return "tabela_hurtownie";
         }
 
-        @RequestMapping("/new")
-        public String showNewForm(Model model){
+        @RequestMapping("/newHurtownie")
+        public String showNewFormHurtownie(Model model){
             Hurtownia hurtownia = new Hurtownia();
             model.addAttribute("hurtownia", hurtownia);
-            return "new_form";
+            return "new_form_hurtownie";
         }
 
-        @RequestMapping(value = "/save", method = RequestMethod.POST)
-        public String save (@ModelAttribute("hurtownia") Hurtownia hurtownia) {
-
-            dao.save(hurtownia);
-            return "redirect:/";
+        @RequestMapping(value = "/saveHurtownie", method = RequestMethod.POST)
+        public String save(@ModelAttribute("hurtownia") Hurtownia hurtownia) {
+            dao.saveHurtownie(hurtownia);
+            return "redirect:/tabela_hurtownie";
         }
 
-        @RequestMapping("/edit/{nrHurtowni}")
-        public ModelAndView showEditForm(@PathVariable(name = "nrHurtowni") int nrHurtowni) {
-            ModelAndView mav = new ModelAndView("edit_form");
-            Hurtownia hurtownia = dao.get(nrHurtowni);
+        @RequestMapping("/editHurtownie/{nrHurtowni}")
+        public ModelAndView showEditFormHurtownie(@PathVariable(name = "nrHurtowni") int nrHurtowni) {
+            ModelAndView mav = new ModelAndView("edit_form_hurtownie");
+            Hurtownia hurtownia = dao.getHurtownie(nrHurtowni);
             mav.addObject("hurtownia", hurtownia);
 
             return mav;
         }
 
-        @RequestMapping(value = "/update", method = RequestMethod.POST)
+        @RequestMapping(value = "/updateHurtownie", method = RequestMethod.POST)
         public String update(@ModelAttribute("hurtownia") Hurtownia hurtownia) {
-            dao.update(hurtownia);
+            dao.updateHurtownie(hurtownia);
 
             return "redirect:/tabela_hurtownie";
         }
 
-        @RequestMapping("/delete/{nrHurtowni}")
-        public String delete(@PathVariable(name = "nrHurtowni") int nrHurtowni) {
-            dao.delete(nrHurtowni);
+        @RequestMapping("/deleteHurtownie/{nrHurtowni}")
+        public String delete(@PathVariable(name = "nrHurtowni") int nrHurtowni, @ModelAttribute("hurtownia") Hurtownia hurtownia) {
+            dao.deleteHurtownie(nrHurtowni);
 
             return "redirect:/tabela_hurtownie";
         }
 
+        /////////////////////////////////////////
+        @RequestMapping("/tabela_produkty")
+        public String viewAdminProdukty(Model model) {
+            /* Import java.util.List */
+            List<Produkt> listProdukt = daoP.list();
+            model.addAttribute("listProdukt", listProdukt);
+            return "tabela_produkty";
+        }
+
+        @RequestMapping("/newProdukty")
+        public String showNewFormProdukty(Model model){
+            Produkt produkt = new Produkt();
+            model.addAttribute("produkt", produkt);
+            return "new_form_produkty";
+        }
+
+        @RequestMapping(value = "/saveProdukty", method = RequestMethod.POST)
+        public String save(@ModelAttribute("produkt") Produkt produkt) {
+            daoP.saveProdukty(produkt);
+            return "redirect:/tabela_produkty";
+        }
+
+        @RequestMapping("/editProdukty/{nrProduktu}")
+        public ModelAndView showEditFormProdukty(@PathVariable(name = "nrProduktu") int nrProduktu) {
+            ModelAndView mav = new ModelAndView("edit_form_produkty");
+            Produkt produkt = daoP.getProdukty(nrProduktu);
+            mav.addObject("produkt", produkt);
+
+            return mav;
+        }
+
+        @RequestMapping(value = "/updateProdukty", method = RequestMethod.POST)
+        public String update(@ModelAttribute("produkt") Produkt produkt) {
+            daoP.updateProdukty(produkt);
+
+            return "redirect:/tabela_produkty";
+        }
+
+        @RequestMapping("/deleteProdukty/{nrProduktu}")
+        public String delete(@PathVariable(name = "nrProduktu") int nrProduktu, @ModelAttribute("produkt") Produkt produkt) {
+            daoP.deleteProdukty(nrProduktu);
+
+            return "redirect:/tabela_produkty";
+        }
+        ////////////////////////////////////////
+
+        @RequestMapping("/tabela_klienci")
+        public String viewAdminKlienci(Model model) {
+            /* Import java.util.List */
+            List<Klient> listKlient = daoK.list();
+            model.addAttribute("listKlient", listKlient);
+            return "tabela_klienci";
+        }
+
+        @RequestMapping("/newKlienci")
+        public String showNewFormKlienci(Model model){
+            Klient klient = new Klient();
+            model.addAttribute("klient", klient);
+            return "new_form_klienci";
+        }
+
+        @RequestMapping(value = "/saveKlienci", method = RequestMethod.POST)
+        public String save(@ModelAttribute("klient") Klient klient) {
+            daoK.saveKlienci(klient);
+            return "redirect:/tabela_klienci";
+        }
+
+        @RequestMapping("/editKlienci/{nrKlienta}")
+        public ModelAndView showEditFormKlienci(@PathVariable(name = "nrKlienta") int nrKlienta) {
+            ModelAndView mav = new ModelAndView("edit_form_klienci");
+            Klient klient = daoK.getKlienci(nrKlienta);
+            mav.addObject("klient", klient);
+
+            return mav;
+        }
+
+        @RequestMapping(value = "/updateKlienci", method = RequestMethod.POST)
+        public String update(@ModelAttribute("klient") Klient klient) {
+            daoK.updateKlienci(klient);
+
+            return "redirect:/tabela_klienci";
+        }
+
+        @RequestMapping("/deleteKlienci/{nrKlienta}")
+        public String delete(@PathVariable(name = "nrKlienta") int nrKlienta, @ModelAttribute("klient") Klient klient) {
+            daoK.deleteKlienci(nrKlienta);
+
+            return "redirect:/tabela_klienci";
+        }
+
+
+        @RequestMapping(value={"/", "/index"})
+        public String mainPage(Model model) {
+            /* Import java.util.List */
+            List<Hurtownia> listHurtownia = dao.list();
+            model.addAttribute("listHurtownia", listHurtownia);
+            return "index";
+        }
+
+//        @RequestMapping("/produkty/{nrHurtowni}")
+//        public ModelAndView showProducts(@PathVariable(name = "nrHurtowni") int nrHurtowni) {
+//            ModelAndView mav = new ModelAndView("product-list");
+//            List<Produkt> produkt = daoP.listWithHurtownia(nrHurtowni);
+//            mav.addObject("produkt", produkt);
+//
+//            return mav;
+//        }
+
+//        @RequestMapping("/produkty/{nrHurtowni}")
+//        public String viewProducts(@PathVariable(name="nrHurtowni") int nrHurtowni, Model model) {
+//            /* Import java.util.List */
+//            List<Produkt> listProduktyWithHurtownia = daoP.listWithHurtownia(121);
+//            model.addAttribute("listProduktyWithHurtownia", listProduktyWithHurtownia);
+//            return "redirect:/produkty/{nrHurtowni}";
+//        }
+//        @RequestMapping("/product-list")
+//        public String viewProducts(Model model) {
+//            /* Import java.util.List */
+//            List<Produkt> listProdukt = daoP.list();
+//            model.addAttribute("listProdukt", listProdukt);
+//            return "product-list";
+//        }
     }
 
 

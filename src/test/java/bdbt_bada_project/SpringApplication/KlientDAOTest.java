@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -34,17 +35,38 @@ class KlientDAOTest extends Object {
 
     @Test
     void save() {
+        Klient klient = new Klient(400, "Maria", "Szczypa", "25412536985", LocalDate.of(1994,7,5), "M", "kshdfbjkdsf", "777444111", "119", 121);
+        dao.saveKlienci(klient);
     }
 
     @Test
     void get() {
+        int nrKlienta = 400;
+        Klient klient = dao.getKlienci(nrKlienta);
+        System.out.println(klient);
+        assertNotNull(klient);
     }
 
     @Test
     void update() {
+        Klient klient = new Klient();
+        klient.setNrKlienta(400);
+        klient.setImie("Kamil");
+        klient.setNazwisko("Sztos");
+        klient.setPesel("55555555555");
+        klient.setDataUrodzenia(LocalDate.of(2011,8,13));
+        klient.setPlec("K");
+        klient.setEmail("jhsdjksfdl");
+        klient.setNrTelefonu("555555554");
+        klient.setNrAdresu("120");
+        klient.setNrHurtowni(121);
+
+        dao.updateKlienci(klient);
     }
 
     @Test
     void delete() {
+        int nrKlienta = 400;
+        dao.deleteKlienci(nrKlienta);
     }
 }

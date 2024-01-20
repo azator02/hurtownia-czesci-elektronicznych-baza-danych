@@ -44,6 +44,9 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/main}">Login</a></a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/product-list}">Product List</a></a>
+                </li>
 
             </ul>
         </div>
@@ -96,7 +99,33 @@
     </table>
 
 </div>-->
-
+<div class="tabela-hurtowni" style="margin-left: 250px;">
+    <div class="row">
+        <div class="col-md-10 mt-5">
+            <!-- Table -->
+            <table border="1" cellpadding="20">
+                <!-- border – obramowanie, cellpadding – rozmiar komórki-->
+                <!-- Table header -->
+                <thead>
+                <tr> <!-- Table row -->
+                    <!--Table column-->
+                    <th>Nazwa</th>
+                    <th>Wybierz hurtownię</th>
+                </tr>
+                </thead>
+                <!-- Table body -->
+                <tbody>
+                <tr th:each="hurtownia : ${listHurtownia}">
+                    <td th:text="${hurtownia.nazwa}">Nazwa</td>
+                    <td>
+                        <a th:href="@{'produkty/' + ${hurtownia.nrHurtowni}}">Wybierz</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>

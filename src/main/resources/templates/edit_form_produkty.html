@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edycja produktu</title>
+</head>
+<body>
+
+<div align="center">
+  <!--Page header-->
+  <h1>Edytuj produkt</h1>
+  <!--end line/newline-->
+  <br/>
+  <form action="#" th:action="@{/updateProdukty}" th:object="${produkt}" method="post">
+    <!--table-->
+    <table border = "1" cellpadding="10">
+      <!--table row-->
+      <tr>
+        <td>Numer produktu:</td>
+        <td><input type="text" th:field="*{nrProduktu}" readonly="readonly"></td>
+      </tr>
+      <tr>
+        <td>Nazwa:</td>
+        <td><input type="text" th:field="*{nazwa}"></td>
+      </tr>
+      <tr>
+        <td>Opis:</td>
+        <td><input type="text" th:field="*{opis}"></td>
+      </tr>
+      <tr>
+        <td>Ilość produktów:</td>
+        <td><input type="text" th:field="*{iloscProduktow}"></td>
+      </tr>
+      <tr>
+        <td>Producent:</td>
+        <td><input type="text" th:field="*{producent}"></td>
+      </tr>
+      <tr>
+        <td>Cena:</td>
+        <td><input type="text" th:field="*{cena}"></td>
+      </tr>
+      <tr>
+        <td>Numer hurtowni:</td>
+        <td><input type="text" th:field="*{nrHurtowni}"></td>
+      </tr>
+      <!--button saveHurtownie-->
+      <tr>
+        <td colspan="2"><button type="submit">Zapisz</button></td>
+      </tr>
+    </table>
+  </form>
+</div>
+
+</body>
+</html>

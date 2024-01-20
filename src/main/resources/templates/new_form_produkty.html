@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Nowy Produkt</title>
+</head>
+<body>
+<div align="center">
+  <!--Page header-->
+  <h1>Wprowadź nowy produkt</h1>
+
+  <br/>
+
+  <form action="#" th:action="@{/saveProdukty}" th:object="${produkt}" method="post">
+    <!--Table-->
+    <table border="1" cellpadding="10">
+      <tr>
+        <td>Nr produktu</td>
+        <td><input type="text" th:field="*{nrProduktu}"></td>
+      </tr>
+      <tr>
+        <td>Nazwa</td>
+        <td><input type="text" th:field="*{nazwa}"></td>
+      </tr>
+      <tr>
+        <td>Opis</td>
+        <td><input type="text" th:field="*{opis}"></td>
+      </tr>
+      <tr>
+        <td>Ilosc produktów</td>
+        <td><input type="text" th:field="*{iloscProduktow}"></td>
+      </tr>
+      <tr>
+        <td>Producent</td>
+        <td><input type="text" th:field="*{producent}"></td>
+      </tr>
+      <tr>
+        <td>Cena</td>
+        <td><input type="text" th:field="*{cena}"></td>
+      </tr>
+      <tr>
+        <td>Nr hurtowni</td>
+        <td><input type="text" th:field="*{nrHurtowni}"></td>
+      </tr>
+      <tr>
+        <td colspan="2"><button type="submit">Save</button></td>
+      </tr>
+
+    </table>
+  </form>
+
+
+</div>
+</body>
+</html>

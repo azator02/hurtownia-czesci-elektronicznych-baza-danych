@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Hurtownia części elektronicznych</title>
+</head>
+<body>
+
+<div align="center">
+  <!--Page header-->
+  <h1>Klienci</h1>
+
+  <!--Entry to new page-->
+  <a href="/newKlienci">Wprowadź nowego klienta</a>
+
+  <!--Break line-->
+  <br/><br/>
+
+  <!-- Table -->
+  <table border = "1" cellpadding = "20">
+    <!-- border – obramowanie, cellpadding – rozmiar komórki-->
+    <!-- Table header -->
+    <thead>
+    <tr> <!-- Table row -->
+      <th>Nr klienta</th> <!--Table column-->
+      <th>Imię</th>
+      <th>Nazwisko</th>
+      <th>Pesel</th>
+      <th>Data urodzenia</th>
+      <th>Płeć</th>
+      <th>Email</th>
+      <th>Nr telefonu</th>
+      <th>Nr adresu</th>
+      <th>Nr hurtowni</th>
+      <th>Działanie</th>
+    </tr>
+    </thead>
+    <!-- Table body -->
+    <tbody>
+    <tr th:each = "klient : ${listKlient}">
+      <td th:text = "${klient.nrKlienta}">Nr Klienta</td>
+      <td th:text = "${klient.imie}">Imię</td>
+      <td th:text = "${klient.nazwisko}">Nazwisko</td>
+      <td th:text = "${klient.pesel}">Pesel</td>
+      <td th:text = "${klient.dataUrodzenia}">Data urodzenia</td>
+      <td th:text = "${klient.plec}">Płeć</td>
+      <td th:text = "${klient.email}">Email</td>
+      <td th:text = "${klient.nrTelefonu}">Nr telefonu</td>
+      <td th:text = "${klient.nrAdresu}">Nr adresu</td>
+      <td th:text = "${klient.nrTelefonu}">Nr hurtowni</td>
+      <td>
+        <a th:href="@{'editKlienci/' + ${klient.nrKlienta}}">Edytuj</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a th:href="@{'deleteKlienci/' + ${klient.nrKlienta}}">Usuń</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

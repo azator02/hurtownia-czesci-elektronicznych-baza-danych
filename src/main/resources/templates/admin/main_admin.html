@@ -5,7 +5,37 @@
   <title>Main Admin Page</title>
 
   <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+  <style>
+        .tabele ul {
+            margin-top: 20px;
+            margin-left: 220px;
+            list-style-type: none;
+            padding: 0px;
+            font-size: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: lightskyblue;
+            color: azure;
+            font-weight: bold;
 
+        }
+
+        .el_tabela {
+            margin-bottom: 15px;
+            border-radius: 8px;
+            max-width: 300px;
+        }
+
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            color: white;
+            text-align: center;
+            background-color: rgb(35, 35, 39);
+        }
+    </style>
 </head>
 <body>
 
@@ -59,6 +89,22 @@
     </div>
 
   </div>
+</div>
+<div class="footer">
+  Project by Agata Zatorska and Anh Quan Do
+</div>
+<div class=tabele>
+  <ul>
+    <li class = el_tabela>
+      <a th:href="@{/tabela_hurtownie}">Tabela Hurtownia</a>
+    </li>
+    <li class = el_tabela>
+      <a th:href="@{/tabela_produkty}">Tabela Produkty</a>
+    </li>
+    <li class = el_tabela>
+      <a th:href="@{/tabela_klienci}">Tabela Klienci</a>
+    </li>
+  </ul>
 </div>
 
 
