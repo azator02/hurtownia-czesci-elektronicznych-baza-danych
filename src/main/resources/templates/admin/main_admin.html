@@ -7,22 +7,29 @@
   <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
   <style>
         .tabele ul {
-            margin-top: 20px;
-            margin-left: 220px;
+            display: flex;
+            flex-direction: row;
+            margin-top: 70px;
+            margin-left: 100px;
+            margin-right: 100px;
             list-style-type: none;
             padding: 0px;
-            font-size: 15px;
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: lightskyblue;
-            color: azure;
-            font-weight: bold;
-
+            justify-content: space-around;
+            align-items: center;
         }
 
         .el_tabela {
             margin-bottom: 15px;
-            border-radius: 8px;
-            max-width: 300px;
+            border-radius: 5px;
+            max-width: 1000px;
+            padding: 20px;
+            background-color: rgb(0, 157, 255);
+            color: azure;
+            font-weight: bold;
+            margin-down: 50px;
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 20px;
         }
 
 
@@ -67,6 +74,10 @@
         </li>
 
       </ul>
+      <form method="post" th:action="@{/index}">
+      <button class="btn btn-primary" type="submit" onclick="successfullyLogout()" value="Sign Out">Logout
+      </button>
+      </form>
     </div>
   </div>
 </nav>
@@ -83,8 +94,7 @@
           <div style="font-size:20px">If you want to logout, click "Logout" button under this text.</div>
         </div>
 
-        <button class="btn btn-primary" type="submit" onclick="successfullyLogout()" value="Sign Out">Logout
-        </button>
+
       </form>
     </div>
 
@@ -95,14 +105,14 @@
 </div>
 <div class=tabele>
   <ul>
-    <li class = el_tabela>
-      <a th:href="@{/tabela_hurtownie}">Tabela Hurtownia</a>
+    <li>
+      <a class = el_tabela th:href="@{/tabela_hurtownie}">Tabela Hurtownia</a>
     </li>
-    <li class = el_tabela>
-      <a th:href="@{/tabela_produkty}">Tabela Produkty</a>
+    <li>
+      <a class="el_tabela" th:href="@{/tabela_produkty}">Tabela Produkty</a>
     </li>
-    <li class = el_tabela>
-      <a th:href="@{/tabela_klienci}">Tabela Klienci</a>
+    <li>
+      <a class="el_tabela" th:href="@{/tabela_klienci}">Tabela Klienci</a>
     </li>
   </ul>
 </div>
