@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
@@ -31,7 +33,6 @@ public class HurtowniaDAO {
     }
     /* Insert – wstawianie nowego wiersza do bazy */
     public void save(Hurtownia hurtownia) {
-//        Date temp = hurtownia.getDataZalozenia();
         SimpleJdbcInsert insertActor = new SimpleJdbcInsert(jdbcTemplate);
         insertActor.withTableName("HURTOWNIE").usingColumns("NR_HURTOWNI", "NAZWA", "DATA_ZALOZENIA", "NR_ADRESU");
         BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(hurtownia);
@@ -40,14 +41,26 @@ public class HurtowniaDAO {
 
     }
     /* Read – odczytywanie danych z bazy */
-    public Hurtownia get(int id) {
-        return null;
+    public Hurtownia get(int nrHurtowni) {
+        Object[] args = {nrHurtowni};
+        String sql = "SELECT * FROM HURTOWNIE WHERE NR_HURTOWNI = " + args[0];
+        Hurtownia hurtownia = jdbcTemplate.queryForObject(sql, BeanPropertyRowMapper.newInstance(Hurtownia.class));
+        return hurtownia;
     }
+
+
     /* Update – aktualizacja danych */
     public void update(Hurtownia hurtownia) {
+        String sql = "UPDATE HURTOWNIE SET nazwa=:nazwa, data_zalozenia=:dataZalozenia, nr_adresu=:nrAdresu WHERE nr_hurtowni=:nrHurtowni";
+        BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(hurtownia);
+        NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
+
+        template.update(sql, param);
     }
     /* Delete – wybrany rekord z danym id */
-    public void delete(int id) {
+    public void delete(int nrHurtowni) {
+        String sql = "DELETE FROM HURTOWNIE WHERE NR_HURTOWNI = ?";
+        jdbcTemplate.update(sql, nrHurtowni);
     }
 
 }

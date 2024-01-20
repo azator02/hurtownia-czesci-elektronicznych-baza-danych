@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Hurtownia części elektronicznych</title>
+</head>
+<body>
+
+<div align="center">
+  <!--Page header-->
+  <h1>Hurtownieeee</h1>
+
+  <!--Entry to new page-->
+  <a href="/new">Wprowadź nową hurtownie</a>
+
+  <!--Break line-->
+  <br/><br/>
+
+  <!-- Table -->
+  <table border = "1" cellpadding = "20">
+    <!-- border – obramowanie, cellpadding – rozmiar komórki-->
+    <!-- Table header -->
+    <thead>
+    <tr> <!-- Table row -->
+      <th>Nr hurtowni</th> <!--Table column-->
+      <th>Nazwa</th>
+      <th>Data założenia</th>
+      <th>Nr adresu</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <!-- Table body -->
+    <tbody>
+    <tr th:each = "hurtownia : ${listHurtownia}">
+      <td th:text = "${hurtownia.nrHurtowni}">Nr hurtowni</td>
+      <td th:text = "${hurtownia.nazwa}">Nazwa</td>
+      <td th:text = "${hurtownia.dataZalozenia}">Data założenia</td>
+      <td th:text = "${hurtownia.nrAdresu}">Nr adresu</td>
+      <td>
+        <a th:href="@{'edit/' + ${hurtownia.nrHurtowni}}">Edytuj</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a th:href="@{'delete/' + ${hurtownia.nrHurtowni}}">Usuń</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

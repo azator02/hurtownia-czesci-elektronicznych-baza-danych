@@ -7,7 +7,7 @@ import java.time.LocalDate;
 public class Hurtownia {
     private int nrHurtowni;
     private String nazwa;
-    @DateTimeFormat(pattern = "yy/MM/dd")
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate dataZalozenia;
     private int nrAdresu;
 

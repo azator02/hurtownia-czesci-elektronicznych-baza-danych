@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edycja hurtowni</title>
+</head>
+<body>
+
+<div align="center">
+  <!--Page header-->
+  <h1>Edytuj hurtownię</h1>
+  <!--end line/newline-->
+  <br/>
+  <form action="#" th:action="@{/update}" th:object="${hurtownia}" method="post">
+    <!--table-->
+    <table border = "1" cellpadding="10">
+      <!--table row-->
+      <tr>
+        <td>Numer hurtowni:</td>
+        <td><input type="text" th:field="*{nrHurtowni}" readonly="readonly"></td>
+      </tr>
+      <tr>
+        <td>Nazwa:</td>
+        <td><input type="text" th:field="*{nazwa}"></td>
+      </tr>
+      <tr>
+        <td>Data założenia:</td>
+        <td><input type="text" th:field="*{dataZalozenia}"></td>
+      </tr>
+      <tr>
+        <td>Nr adresu:</td>
+        <td><input type="text" th:field="*{nrAdresu}"></td>
+      </tr>
+      <!--button save-->
+      <tr>
+        <td colspan="2"><button type="submit">Zapisz</button></td>
+      </tr>
+    </table>
+  </form>
+</div>
+
+</body>
+</html>
