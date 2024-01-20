@@ -1,19 +1,24 @@
 package bdbt_bada_project.SpringApplication;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.sql.Date;
+import java.time.LocalDate;
+
 public class Klient {
     private int nrKlienta;
     private String imie;
     private String nazwisko;
     private String pesel;
-    private Date dataUrodzenia;
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    private LocalDate dataUrodzenia;
     private String plec;
     private String email;
     private String nrTelefonu;
     private String nrAdresu;
     private int nrHurtowni;
 
-    public Klient(int nrKlienta, String imie, String nazwisko, String pesel, Date dataUrodzenia, String plec, String email, String nrTelefonu, String nrAdresu, int nrHurtowni) {
+    public Klient(int nrKlienta, String imie, String nazwisko, String pesel, LocalDate dataUrodzenia, String plec, String email, String nrTelefonu, String nrAdresu, int nrHurtowni) {
         super();
         this.nrKlienta = nrKlienta;
         this.imie = imie;
@@ -47,7 +52,7 @@ public class Klient {
         return pesel;
     }
 
-    public Date getDataUrodzenia() {
+    public LocalDate getDataUrodzenia() {
         return dataUrodzenia;
     }
 
@@ -87,7 +92,7 @@ public class Klient {
         this.pesel = pesel;
     }
 
-    public void setDataUrodzenia(Date dataUrodzenia) {
+    public void setDataUrodzenia(LocalDate dataUrodzenia) {
         this.dataUrodzenia = dataUrodzenia;
     }
 

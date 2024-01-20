@@ -12,7 +12,7 @@
   <h1>Edytuj hurtownię</h1>
   <!--end line/newline-->
   <br/>
-  <form action="#" th:action="@{/update}" th:object="${hurtownia}" method="post">
+  <form action="#" th:action="@{/updateHurtownie}" th:object="${hurtownia}" method="post">
     <!--table-->
     <table border = "1" cellpadding="10">
       <!--table row-->
@@ -32,7 +32,7 @@
         <td>Nr adresu:</td>
         <td><input type="text" th:field="*{nrAdresu}"></td>
       </tr>
-      <!--button save-->
+      <!--button saveHurtownie-->
       <tr>
         <td colspan="2"><button type="submit">Zapisz</button></td>
       </tr>

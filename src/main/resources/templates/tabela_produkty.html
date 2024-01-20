@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hurtownia części elektronicznych</title>
+</head>
+<body>
+
+<div align="center">
+    <!--Page header-->
+    <h1>Produkty</h1>
+
+    <!--Entry to new page-->
+    <a href="/newProdukty">Wprowadź nowy produkt</a>
+
+    <!--Break line-->
+    <br/><br/>
+
+    <!-- Table -->
+    <table border = "1" cellpadding = "20">
+        <!-- border – obramowanie, cellpadding – rozmiar komórki-->
+        <!-- Table header -->
+        <thead>
+        <tr> <!-- Table row -->
+            <th>Nr produktu</th> <!--Table column-->
+            <th>Nazwa</th>
+            <th>Opis</th>
+            <th>Ilosc produktów</th>
+            <th>Producent</th>
+            <th>Cena</th>
+            <th>Nr hurtowni</th>
+            <th>Działanie</th>
+        </tr>
+        </thead>
+        <!-- Table body -->
+        <tbody>
+        <tr th:each = "produkt : ${listProdukt}">
+            <td th:text = "${produkt.nrProduktu}">Nr produktu</td>
+            <td th:text = "${produkt.nazwa}">Nazwa</td>
+            <td th:text = "${produkt.opis}">Opis</td>
+            <td th:text = "${produkt.iloscProduktow}">Ilosc produktów</td>
+            <td th:text = "${produkt.producent}">Producent</td>
+            <td th:text = "${produkt.cena}">Cena</td>
+            <td th:text = "${produkt.nrHurtowni}">Nr hurtowni</td>
+            <td>
+                <a th:href="@{'editProdukty/' + ${produkt.nrProduktu}}">Edytuj</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a th:href="@{'deleteProdukty/' + ${produkt.nrProduktu}}">Usuń</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

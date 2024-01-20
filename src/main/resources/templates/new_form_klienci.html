@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Nowy Klient</title>
+</head>
+<body>
+<div align="center">
+  <!--Page header-->
+  <h1>Wprowadź nowego klienta</h1>
+
+  <br/>
+
+  <form action="#" th:action="@{/saveKlienci}" th:object="${klient}" method="post">
+    <!--Table-->
+    <table border="1" cellpadding="10">
+      <tr>
+        <td>Nr klienta</td>
+        <td><input type="text" th:field="*{nrKlienta}"></td>
+      </tr>
+      <tr>
+        <td>Imię</td>
+        <td><input type="text" th:field="*{imie}"></td>
+      </tr>
+      <tr>
+        <td>Nazwisko</td>
+        <td><input type="text" th:field="*{nazwisko}"></td>
+      </tr>
+      <tr>
+        <td>Pesel</td>
+        <td><input type="text" th:field="*{pesel}"></td>
+      </tr>
+      <tr>
+        <td>Data Urodzenia</td>
+        <td><input type="text" th:field="*{dataUrodzenia}"></td>
+      </tr>
+      <tr>
+        <td>Płeć</td>
+        <td><input type="text" th:field="*{plec}"></td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td><input type="text" th:field="*{email}"></td>
+      </tr>
+      <tr>
+        <td>Nr telefonu</td>
+        <td><input type="text" th:field="*{nrTelefonu}"></td>
+      </tr>
+      <tr>
+        <td>Nr adresu</td>
+        <td><input type="text" th:field="*{nrAdresu}"></td>
+      </tr>
+      <tr>
+        <td>Nr hurtowni</td>
+        <td><input type="text" th:field="*{nrHurtowni}"></td>
+      </tr>
+      <tr>
+        <td colspan="2"><button type="submit">Save</button></td>
+      </tr>
+
+    </table>
+  </form>
+
+
+</div>
+</body>
+</html>
