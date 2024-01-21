@@ -6,6 +6,26 @@
 
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 
+    <style>
+     .footer {
+        color: white;
+        background-color: rgb(35, 35, 39);
+        height: 120px;
+        padding: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        flex-direction: column;
+        width: 100%;
+
+    }
+    .footer .text {
+        font-size: 12px;
+    }
+    </style>
 </head>
 
 <!-- <body th:style="'background: url(/assets/img/img.png) no-repeat center center fixed;'"> -->
@@ -43,9 +63,6 @@
 
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/main}">Login</a></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/product-list}">Product List</a></a>
                 </li>
 
             </ul>
@@ -110,21 +127,32 @@
                 <tr> <!-- Table row -->
                     <!--Table column-->
                     <th>Nazwa</th>
-                    <th>Wybierz hurtownię</th>
+                    <th>Data założenia</th>
+                    <th>Adres</th>
                 </tr>
                 </thead>
                 <!-- Table body -->
                 <tbody>
                 <tr th:each="hurtownia : ${listHurtownia}">
                     <td th:text="${hurtownia.nazwa}">Nazwa</td>
+                    <td th:text="${hurtownia.dataZalozenia}">Data założenia</td>
                     <td>
-                        <a th:href="@{'produkty/' + ${hurtownia.nrHurtowni}}">Wybierz</a>
+                        <a th:href="@{'/adresy/' + ${hurtownia.nrAdresu}}">Zobacz adres</a>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
+</div>
+
+<a th:href="@{'produkty_oferta'}">Oferta produktów</a>
+<div class="footer">
+    <div class="text">ZatDo Sp. z o.o.</div>
+    <div class="text">Telefon: 111222333</div>
+    <div class="text">e-mail: ZatDo@wp.pl</div>
+    <div class="text">Adres: 91-230 Łódź</div>
+    <div class="text">ul.Lechicka 102</div>
 </div>
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>

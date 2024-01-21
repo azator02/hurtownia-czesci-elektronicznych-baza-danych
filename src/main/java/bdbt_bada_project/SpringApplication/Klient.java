@@ -17,8 +17,10 @@ public class Klient {
     private String nrTelefonu;
     private String nrAdresu;
     private int nrHurtowni;
+    private String login;
+    private String haslo;
 
-    public Klient(int nrKlienta, String imie, String nazwisko, String pesel, LocalDate dataUrodzenia, String plec, String email, String nrTelefonu, String nrAdresu, int nrHurtowni) {
+    public Klient(int nrKlienta, String imie, String nazwisko, String pesel, LocalDate dataUrodzenia, String plec, String email, String nrTelefonu, String nrAdresu, int nrHurtowni, String login, String haslo) {
         super();
         this.nrKlienta = nrKlienta;
         this.imie = imie;
@@ -30,6 +32,8 @@ public class Klient {
         this.nrTelefonu = nrTelefonu;
         this.nrAdresu = nrAdresu;
         this.nrHurtowni = nrHurtowni;
+        this.login = login;
+        this.haslo = haslo;
     }
 
     public Klient(){
@@ -75,6 +79,8 @@ public class Klient {
     public int getNrHurtowni() {
         return nrHurtowni;
     }
+    public String getLogin() { return login; }
+    public String getHaslo() { return haslo; }
 
     public void setNrKlienta(int nrKlienta) {
         this.nrKlienta = nrKlienta;
@@ -115,6 +121,8 @@ public class Klient {
     public void setNrHurtowni(int nrHurtowni) {
         this.nrHurtowni = nrHurtowni;
     }
+    public void setLogin(String login) { this.login = login; }
+    public void setHaslo(String haslo) { this.haslo = haslo; }
 
     @Override
     public String toString() {
@@ -129,6 +137,8 @@ public class Klient {
                 ", nrTelefonu=" + nrTelefonu +
                 ", nrAdresu=" + nrAdresu +
                 ", nrHurtowni=" + nrHurtowni +
+                ", login=" + login +
+                ", haslo=" + haslo +
                 '}';
     }
 }

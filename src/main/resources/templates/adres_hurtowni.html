@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Hurtownia części elektronicznych</title>
+
+  <style>
+    .linki{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    .link {
+      margin-bottom: 15px;
+      border-radius: 5px;
+      max-width: 1000px;
+      padding: 10px;
+      background-color: rgb(0, 157, 255);
+      color: azure;
+      font-weight: bold;
+      margin-down: 50px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10px;
+    }
+  </style>
+
+</head>
+<body>
+
+<div align="center">
+  <!--Page header-->
+  <h1>Adres</h1>
+
+
+  <div class="linki">
+    <a class="link" th:href="@{'/index/'}">Wróć</a>
+  </div>
+  <!-- Table -->
+  <table border = "1" cellpadding = "20">
+    <!-- border – obramowanie, cellpadding – rozmiar komórki-->
+    <!-- Table header -->
+    <thead>
+    <tr> <!-- Table row -->
+      <th>Miasto</th>
+      <th>Ulica</th>
+      <th>Nr budynku</th>
+      <th>Nr lokalu</th>
+    </tr>
+    </thead>
+    <!-- Table body -->
+    <tbody>
+    <tr th:each = "adres : ${adres}">
+      <td th:text = "${adres.miasto}">Miasto</td>
+      <td th:text = "${adres.ulica}">Ulica</td>
+      <td th:text = "${adres.nrBudynku}">Nr budynku</td>
+      <td th:text = "${adres.nrLokalu}">Nr lokalu</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

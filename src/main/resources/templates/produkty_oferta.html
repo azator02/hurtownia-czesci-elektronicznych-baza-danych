@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Hurtownia części elektronicznych</title>
+</head>
+<body>
+
+<div align="center">
+  <!--Page header-->
+  <h1>Produkty</h1>
+
+  <!--Entry to new page-->
+<!--  <a href="/newProdukty">Wprowadź nowy produkt</a>-->
+
+  <!--Break line-->
+  <br/><br/>
+
+  <!-- Table -->
+  <table border = "1" cellpadding = "20">
+    <!-- border – obramowanie, cellpadding – rozmiar komórki-->
+    <!-- Table header -->
+    <thead>
+    <tr> <!-- Table row -->
+      <th>Nazwa</th><!--Table column-->
+      <th>Cena (zł)</th>
+      <th>Wybierz produkt</th>
+    </tr>
+    </thead>
+    <!-- Table body -->
+    <tbody>
+    <tr th:each = "produkt : ${listProdukt}">
+      <td th:text = "${produkt.nazwa}">Nazwa</td>
+      <td th:text = "${produkt.cena}">Cena (zł)</td>
+      <td>
+        <a th:href="@{'/InformacjeOProdukcie/' + ${produkt.nrProduktu}}">Więcej informacji</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

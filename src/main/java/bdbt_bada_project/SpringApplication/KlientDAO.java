@@ -29,7 +29,7 @@ public class KlientDAO {
     /* Insert – wstawianie nowego wiersza do bazy */
     public void saveKlienci(Klient klient) {
         SimpleJdbcInsert insertActor = new SimpleJdbcInsert(jdbcTemplate);
-        insertActor.withTableName("KLIENCI").usingColumns("NR_KLIENTA", "IMIE", "NAZWISKO", "PESEL", "DATA_URODZENIA", "PLEC", "EMAIL", "NR_TELEFONU", "NR_ADRESU", "NR_HURTOWNI");
+        insertActor.withTableName("KLIENCI").usingColumns("NR_KLIENTA", "IMIE", "NAZWISKO", "PESEL", "DATA_URODZENIA", "PLEC", "EMAIL", "NR_TELEFONU", "NR_ADRESU", "NR_HURTOWNI", "LOGIN", "HASLO");
         BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(klient);
         System.out.println(klient);
         insertActor.execute(param);
@@ -43,7 +43,7 @@ public class KlientDAO {
     }
     /* Update – aktualizacja danych */
     public void updateKlienci(Klient klient) {
-        String sql = "UPDATE KLIENCI SET imie=:imie, nazwisko=:nazwisko, pesel=:pesel, data_urodzenia=:dataUrodzenia, plec=:plec, email=:email, nr_telefonu=:nrTelefonu, nr_adresu=:nrAdresu, nr_hurtowni=:nrHurtowni WHERE nr_klienta=:nrKlienta";
+        String sql = "UPDATE KLIENCI SET imie=:imie, nazwisko=:nazwisko, pesel=:pesel, data_urodzenia=:dataUrodzenia, plec=:plec, email=:email, nr_telefonu=:nrTelefonu, nr_adresu=:nrAdresu, nr_hurtowni=:nrHurtowni, login=:login, haslo=:haslo WHERE nr_klienta=:nrKlienta";
         BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(klient);
         NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
 
@@ -53,6 +53,13 @@ public class KlientDAO {
     public void deleteKlienci(int nrKlienta) {
         String sql = "DELETE FROM KLIENCI WHERE NR_KLIENTA = ?";
         jdbcTemplate.update(sql, nrKlienta);
+    }
+    public List<Klient> listWithLogin(String login){
+        Object[] args = {login};
+        System.out.println(args[0]);
+        String sql = "SELECT * FROM KLIENCI WHERE LOGIN = " + "'" + args[0] + "'";
+        List<Klient> listKlient = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Klient.class));
+        return listKlient;
     }
 
 }

@@ -43,9 +43,16 @@ public class ProduktDAO {
         return produkt;
     }
 
-    public List<Produkt> listWithHurtownia(int nrHurtowni){
-        Object[] args = {nrHurtowni};
-        String sql = "SELECT * FROM PRODUKTY WHERE NR_HURTOWNI = " + args[0];
+//    public List<Produkt> listWithHurtownia(int nrHurtowni){
+//        Object[] args = {nrHurtowni};
+//        String sql = "SELECT * FROM PRODUKTY WHERE NR_HURTOWNI = " + args[0];
+//        List<Produkt> listProdukt = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Produkt.class));
+//        return listProdukt;
+//    }
+
+    public List<Produkt> listWithProdukt(int nrProduktu){
+        Object[] args = {nrProduktu};
+        String sql = "SELECT * FROM PRODUKTY WHERE NR_PRODUKTU = " + args[0];
         List<Produkt> listProdukt = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Produkt.class));
         return listProdukt;
     }

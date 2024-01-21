@@ -16,9 +16,9 @@ class KlientDAOTest extends Object {
     @BeforeEach
     void setUp() throws Exception{
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setUrl("jdbc:oracle:thin:@192.168.0.2:1522:xe");
-        dataSource.setUsername("AZATOR2");
-        dataSource.setPassword("AZATOR2");
+        dataSource.setUrl("jdbc:oracle:thin:@localhost:1522:xe");
+        dataSource.setUsername("AZATOR2HOME");
+        dataSource.setPassword("AZATOR2HOME");
         dataSource.setDriverClassName("oracle.jdbc.OracleDriver");
 
         /*Import JdbcTemplate*/
@@ -35,7 +35,7 @@ class KlientDAOTest extends Object {
 
     @Test
     void save() {
-        Klient klient = new Klient(400, "Maria", "Szczypa", "25412536985", LocalDate.of(1994,7,5), "M", "kshdfbjkdsf", "777444111", "119", 121);
+        Klient klient = new Klient(400, "Maria", "Szczypa", "25412536985", LocalDate.of(1994,7,5), "M", "kshdfbjkdsf", "777444111", "119", 121, "Szczypa", "Szczypa");
         dao.saveKlienci(klient);
     }
 
@@ -68,5 +68,11 @@ class KlientDAOTest extends Object {
     void delete() {
         int nrKlienta = 400;
         dao.deleteKlienci(nrKlienta);
+    }
+
+    @Test
+    void listWithLogin() {
+        String login = "Pi";
+        System.out.println(dao.listWithLogin(login));
     }
 }
