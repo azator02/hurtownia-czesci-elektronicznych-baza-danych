@@ -5,7 +5,30 @@
   <title>Main User Page</title>
 
   <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+  <style>
+    .linki {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      margin-left: 100px;
+      margin-right: 100px;
+      margin-top: 50px;
+    }
+    .link {
+        margin-bottom: 15px;
+        border-radius: 5px;
+        max-width: 1000px;
+        padding: 20px;
+        background-color: rgb(0, 157, 255);
+        color: azure;
+        font-weight: bold;
+        margin-down: 50px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+    }
 
+
+  </style>
 </head>
 <body>
 
@@ -25,16 +48,15 @@
           <a class="nav-link" th:href="@{/index}">Home</a>
         </li>
 
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Main
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
 
         <li class="nav-item">
           <a class="nav-link" th:inline="text" style="color:lightskyblue;">You are logged in as <b
                   style="text-transform:capitalize">[[${#httpServletRequest.remoteUser}]]</b></a>
         </li>
+        <form method="post" th:action="@{/index}">
+          <button class="btn btn-primary" type="submit" onclick="successfullyLogout()" value="Sign Out">Logout
+          </button>
+        </form>
 
       </ul>
     </div>
@@ -53,12 +75,15 @@
           <div style="font-size:20px">If you want to logout, click "Logout" button under this text.</div>
         </div>
 
-        <button class="btn btn-primary" type="submit" onclick="successfullyLogout()" value="Sign Out">Logout
-        </button>
       </form>
     </div>
 
   </div>
+</div>
+
+<div class="linki">
+  <a class="link" th:href="@{'moje_dane/' + ${#httpServletRequest.remoteUser}}">Zarządzaj swoimi danymi</a>
+  <a class="link" th:href="@{'/produkty_oferta/'}">Przeglądaj produkty</a>
 </div>
 
 

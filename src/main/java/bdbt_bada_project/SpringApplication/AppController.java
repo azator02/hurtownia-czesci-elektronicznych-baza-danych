@@ -49,6 +49,8 @@ public class AppController implements WebMvcConfigurer {
         private ProduktDAO daoP;
         @Autowired
         private KlientDAO daoK;
+        @Autowired
+        private AdresDAO daoA;
 
         @RequestMapping("/tabela_hurtownie")
         public String viewAdminHurtownie(Model model) {
@@ -193,14 +195,39 @@ public class AppController implements WebMvcConfigurer {
             return "index";
         }
 
-//        @RequestMapping("/produkty/{nrHurtowni}")
-//        public ModelAndView showProducts(@PathVariable(name = "nrHurtowni") int nrHurtowni) {
-//            ModelAndView mav = new ModelAndView("product-list");
-//            List<Produkt> produkt = daoP.listWithHurtownia(nrHurtowni);
-//            mav.addObject("produkt", produkt);
-//
-//            return mav;
-//        }
+        @RequestMapping("/InformacjeOProdukcie/{nrProduktu}")
+        public ModelAndView showProducts(@PathVariable(name = "nrProduktu") int nrProduktu) {
+            ModelAndView mav = new ModelAndView("informacjeOProdukcie");
+            List<Produkt> produkt = daoP.listWithProdukt(nrProduktu);
+            mav.addObject("produkt", produkt);
+
+            return mav;
+        }
+        @RequestMapping("/produkty_oferta")
+        public String viewOfertaProdukty(Model model) {
+            /* Import java.util.List */
+            List<Produkt> listProdukt = daoP.list();
+            model.addAttribute("listProdukt", listProdukt);
+            return "produkty_oferta";
+        }
+
+        @RequestMapping("/moje_dane/{login}")
+        public ModelAndView viewMojeDane(@PathVariable(name = "login") String login){
+            ModelAndView mav = new ModelAndView("user/dane_uzytkownika");
+            List<Klient> klient = daoK.listWithLogin(login);
+            mav.addObject("klient", klient);
+
+            return mav;
+        }
+
+        @RequestMapping("/adresy/{nrAdresu}")
+        public ModelAndView viewAdresyHurtowni(@PathVariable(name = "nrAdresu") int nrAdresu){
+            ModelAndView mav = new ModelAndView("adres_hurtowni");
+            List<Adres> adres = daoA.listWithNrAdresu(nrAdresu);
+            mav.addObject("adres", adres);
+
+            return mav;
+        }
 
 //        @RequestMapping("/produkty/{nrHurtowni}")
 //        public String viewProducts(@PathVariable(name="nrHurtowni") int nrHurtowni, Model model) {

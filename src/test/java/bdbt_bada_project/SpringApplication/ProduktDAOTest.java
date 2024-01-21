@@ -35,13 +35,13 @@ class ProduktDAOTest extends Object {
     @Test
     void save() {
         Produkt produkt = new Produkt(300, "termostat", "urządzenie do definiowania temperatury", 100, "Termox", 50, 121);
-        dao.save(produkt);
+        dao.saveProdukty(produkt);
     }
 
     @Test
     void get() {
         int nrProduktu = 300;
-        Produkt produkt = dao.get(nrProduktu);
+        Produkt produkt = dao.getProdukty(nrProduktu);
         System.out.println(produkt);
         assertNotNull(produkt);
     }
@@ -57,12 +57,12 @@ class ProduktDAOTest extends Object {
         produkt.setCena(40);
         produkt.setNrHurtowni(121);
 
-        dao.update(produkt);
+        dao.updateProdukty(produkt);
     }
 
     @Test
     void delete() {
         int nrProduktu = 300;
-        dao.delete(nrProduktu);
+        dao.deleteProdukty(nrProduktu);
     }
 }

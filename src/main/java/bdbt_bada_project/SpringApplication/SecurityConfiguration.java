@@ -19,7 +19,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .withUser("admin")
                 .password("admin")
-                .roles("ADMIN");
+                .roles("ADMIN")
+                .and()
+                .withUser("Pi")
+                .password("Pi")
+                .roles("USER", "UPi")
+                .and()
+                .withUser("Korek")
+                .password("Korek")
+                .roles("USER", "UKorek")
+                .and()
+                .withUser("Sobotka")
+                .password("Sobotka")
+                .roles("USER");
+//                .roles("USobotka");
     }
     @Bean
     public PasswordEncoder getPasswordEncoder() { return NoOpPasswordEncoder.getInstance();
@@ -36,6 +49,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/tabela_klienci").access("hasRole('ADMIN')")
                 .antMatchers("/tabela_produkty").access("hasRole('ADMIN')")
                 .antMatchers("/main_user").access("hasRole('USER')")
+                .antMatchers("/moje_dane/Pi").access("hasRole('UPi')")
+                .antMatchers("/moje_dane/Korek").access("hasRole('UKorek')")
+//                .antMatchers("/moje_dane/Korek").access("")
+//                .antMatchers("/moje_dane/Sobotka").access("")
                 .and()
                 .formLogin()
                 .loginPage("/login")

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Hurtownia części elektronicznych</title>
+</head>
+<body>
+
+<div align="center">
+  <!--Page header-->
+  <h1 th:text = "${produkt[0].nazwa}"></h1>                          <!--Zmienić na nazwę produktu o danym nrProduktu-->
+
+
+
+  <!--Break line-->
+  <br/><br/>
+
+  <!-- Table -->
+  <table border = "1" cellpadding = "20">
+    <!-- border – obramowanie, cellpadding – rozmiar komórki-->
+    <!-- Table header -->
+    <thead>
+    <tr> <!-- Table row -->
+      <th>Nazwa</th><!--Table column-->
+      <th>Opis</th>
+      <th>Ilosc produktów</th>
+      <th>Producent</th>
+      <th>Cena (zł)</th>
+    </tr>
+    </thead>
+    <!-- Table body -->
+    <tbody>
+    <tr th:each = "produkt : ${produkt}">
+      <td th:text = "${produkt.nazwa}">Nazwa</td>
+      <td th:text = "${produkt.opis}">Opis</td>
+      <td th:text = "${produkt.iloscProduktow}">Ilosc produktów</td>
+      <td th:text = "${produkt.producent}">Producent</td>
+      <td th:text = "${produkt.cena}">Cena (zł)</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
