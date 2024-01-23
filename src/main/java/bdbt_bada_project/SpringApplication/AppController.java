@@ -14,7 +14,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-//@Configuration
 @Configuration
 public class AppController implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -22,10 +21,8 @@ public class AppController implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("index");
         registry.addViewController("/main").setViewName("main");
         registry.addViewController("/login").setViewName("login");
-
         registry.addViewController("/main_admin").setViewName("admin/main_admin");
         registry.addViewController("/main_user").setViewName("user/main_user");
-
         registry.addViewController("/tabela_hurtownie").setViewName("tebela_hurtownie");
     }
 
@@ -69,7 +66,12 @@ public class AppController implements WebMvcConfigurer {
 
         @RequestMapping(value = "/saveHurtownie", method = RequestMethod.POST)
         public String save(@ModelAttribute("hurtownia") Hurtownia hurtownia) {
-            dao.saveHurtownie(hurtownia);
+            try {
+                dao.saveHurtownie(hurtownia);
+            }
+            catch (Exception e) {
+                return "redirect:/tabela_hurtownie";
+            }
             return "redirect:/tabela_hurtownie";
         }
 
@@ -84,8 +86,12 @@ public class AppController implements WebMvcConfigurer {
 
         @RequestMapping(value = "/updateHurtownie", method = RequestMethod.POST)
         public String update(@ModelAttribute("hurtownia") Hurtownia hurtownia) {
-            dao.updateHurtownie(hurtownia);
-
+            try {
+                dao.updateHurtownie(hurtownia);
+            }
+            catch (Exception e) {
+                return "redirect:/tabela_hurtownie";
+            }
             return "redirect:/tabela_hurtownie";
         }
 
@@ -114,7 +120,12 @@ public class AppController implements WebMvcConfigurer {
 
         @RequestMapping(value = "/saveProdukty", method = RequestMethod.POST)
         public String save(@ModelAttribute("produkt") Produkt produkt) {
-            daoP.saveProdukty(produkt);
+            try {
+                daoP.saveProdukty(produkt);
+            }
+            catch (Exception e) {
+                return "redirect:/tabela_produkty";
+            }
             return "redirect:/tabela_produkty";
         }
 
@@ -129,8 +140,12 @@ public class AppController implements WebMvcConfigurer {
 
         @RequestMapping(value = "/updateProdukty", method = RequestMethod.POST)
         public String update(@ModelAttribute("produkt") Produkt produkt) {
-            daoP.updateProdukty(produkt);
-
+            try {
+                daoP.updateProdukty(produkt);
+            }
+            catch (Exception e) {
+                return "redirect:/tabela_produkty";
+            }
             return "redirect:/tabela_produkty";
         }
 
@@ -159,7 +174,12 @@ public class AppController implements WebMvcConfigurer {
 
         @RequestMapping(value = "/saveKlienci", method = RequestMethod.POST)
         public String save(@ModelAttribute("klient") Klient klient) {
-            daoK.saveKlienci(klient);
+            try {
+                daoK.saveKlienci(klient);
+            }
+            catch (Exception e) {
+                return "redirect:/tabela_klienci";
+            }
             return "redirect:/tabela_klienci";
         }
 
@@ -172,11 +192,29 @@ public class AppController implements WebMvcConfigurer {
             return mav;
         }
 
-        @RequestMapping(value = "/updateKlienci", method = RequestMethod.POST)
-        public String update(@ModelAttribute("klient") Klient klient) {
-            daoK.updateKlienci(klient);
 
-            return "redirect:/tabela_klienci";
+        @RequestMapping(value = "/main", method = RequestMethod.POST)
+        public String update(@ModelAttribute("klient") Klient klient, HttpServletRequest request) {
+            try {
+                daoK.updateKlienci(klient);
+            }
+            catch (Exception e) {
+                if (request.isUserInRole("ADMIN")) {
+                    return "redirect:/tabela_klienci";
+                } else if (request.isUserInRole("USER")) {
+                    return "redirect:/main_user";
+                }else {
+                    return "redirect:/index";
+                }
+            }
+            if (request.isUserInRole("ADMIN")) {
+                return "redirect:/tabela_klienci";
+            } else if (request.isUserInRole("USER")) {
+                return "redirect:/main_user";
+            }else {
+                return "redirect:/index";
+            }
+
         }
 
         @RequestMapping("/deleteKlienci/{nrKlienta}")
@@ -229,20 +267,6 @@ public class AppController implements WebMvcConfigurer {
             return mav;
         }
 
-//        @RequestMapping("/produkty/{nrHurtowni}")
-//        public String viewProducts(@PathVariable(name="nrHurtowni") int nrHurtowni, Model model) {
-//            /* Import java.util.List */
-//            List<Produkt> listProduktyWithHurtownia = daoP.listWithHurtownia(121);
-//            model.addAttribute("listProduktyWithHurtownia", listProduktyWithHurtownia);
-//            return "redirect:/produkty/{nrHurtowni}";
-//        }
-//        @RequestMapping("/product-list")
-//        public String viewProducts(Model model) {
-//            /* Import java.util.List */
-//            List<Produkt> listProdukt = daoP.list();
-//            model.addAttribute("listProdukt", listProdukt);
-//            return "product-list";
-//        }
     }
 
 
@@ -251,10 +275,6 @@ public class AppController implements WebMvcConfigurer {
         return "tebela_hurtownie";
     }
 
-//    @RequestMapping(value={"/main_admin"})
-//    public String showAdminPage(Model model) {
-//        return "admin/main_admin";
-//    }
     @RequestMapping(value={"/main_user"})
     public String showUserPage(Model model) {
         return "user/main_user";
