@@ -7,24 +7,90 @@
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 
     <style>
-     .footer {
-        color: white;
-        background-color: rgb(35, 35, 39);
-        height: 120px;
-        padding: 15px;
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        flex-direction: column;
-        width: 100%;
+        body {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: rgb(217,240,250);
+            font-family: 'Gotham';
+            justify-content: space-between;
+        }
+        a:hover {
+        text-decoration: none;
+        color: rgb(232,232,232);
+        }
 
-    }
-    .footer .text {
-        font-size: 12px;
-    }
+         .footer {
+            color: white;
+            background-color: rgb(35, 35, 39);
+            height: 120px;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            left: 0;
+            bottom: 0;
+            flex-direction: column;
+            width: 100%;
+        }
+        .footer .text {
+            font-size: 12px;
+        }
+
+        nav {
+            background-color: #009fe3;
+            width: 100%;
+            display: flex;
+            justify-content: baseline;
+            gap: 15px;
+            }
+
+        .oferta {
+            align-self: center;
+            border-radius: 50px;
+            background-color: rgb(16,79,156);
+            padding: 30px;
+            margin-top: 45px;
+        }
+
+        .oferta > a {
+            text-decoration: none;
+            color: inherit;
+            font-size: 32px;
+            color: rgb(232,232,232);
+
+        }
+
+        .tabela-hurtowni {
+        margin-bottom: 100px;
+        align-self: center;
+        margin-left: 100px;
+        }
+
+        table, th, td {
+        border: 4px solid;
+        border-color: rgb(148,25,74);
+        background-color: rgb(76,120,186);
+        color: rgb(232,232,232);
+        width: 100%;
+        }
+
+        .logowanie{
+            border-radius: 15px;
+            padding:7px;
+            color: rgb(232,232,23 r2);
+            background-color: rgb(16,79,156);
+            margin-left: 15px;
+        }
+
+
+<!--        .hero {-->
+<!--        background-color: rgb(250,196,47)-->
+<!--        display: flex;-->
+<!--        display-column: column;-->
+<!--        }-->
+
+
     </style>
 </head>
 
@@ -41,8 +107,8 @@
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-    <div class="container">
-        <a class="navbar-brand" href="/">BDBT Spring Boot Project - Part II</a>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Hurtownia Części Elektronicznych</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -52,17 +118,13 @@
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
+                    <a class="nav-link" href="#">Strona Główna
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/main}">Main</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/main}">Login</a></a>
+                    <a class="nav-link logowanie" th:href="@{/main}">Logowanie</a></a>
                 </li>
 
             </ul>
@@ -74,14 +136,13 @@
 <!--Using images in page    -->
 <!-- <img th:src="@{/assets/img/img.png}" alt="Image" class="img-fluid"> -->
 
-
+<!--<div class="hero">-->
 <div class="container">
     <div class="row">
         <div class="col-md-10 mt-5">
 
-            <label style="font-size:30px">Welcome to the home page!</label>
-            <div style="font-size:20px">If you want to login, click <a th:href="@{/main}"><b>here</b></a> or in the
-                upper right corner.
+            <label style="font-size:50px; font-weight: bold">Witaj na naszej stronie!</label>
+            <div style="font-size:20px">Jeśli chcesz się zalogować, naciśnij <a th:href="@{/main}"><b>tutaj</b></a> lub w prawym górnym rogu.
             </div>
 
         </div>
@@ -116,7 +177,15 @@
     </table>
 
 </div>-->
-<div class="tabela-hurtowni" style="margin-left: 250px;">
+<div class="oferta">
+    <a th:href="@{'/produkty_oferta'}">Oferta produktów</a>
+</div>
+
+
+
+
+
+<div class="tabela-hurtowni">
     <div class="row">
         <div class="col-md-10 mt-5">
             <!-- Table -->
@@ -145,8 +214,10 @@
         </div>
     </div>
 </div>
+<!--</div>-->
 
-<a th:href="@{'produkty_oferta'}">Oferta produktów</a>
+
+
 <div class="footer">
     <div class="text">ZatDo Sp. z o.o.</div>
     <div class="text">Telefon: 111222333</div>

@@ -44,13 +44,21 @@
             <td th:text = "${produkt.cena}">Cena</td>
             <td th:text = "${produkt.nrHurtowni}">Nr hurtowni</td>
             <td>
-                <a th:href="@{'editProdukty/' + ${produkt.nrProduktu}}">Edytuj</a>
+                <form method="post">
+                    <a th:href="@{'editProdukty/' + ${produkt.nrProduktu}}">Edytuj</a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <a th:href="@{'deleteProdukty/' + ${produkt.nrProduktu}}">Usuń</a>
+                    <a th:href="@{'deleteProdukty/' + ${produkt.nrProduktu}}", onclick="successfullyDeletedTable()">Usuń</a>
+                </form>
             </td>
         </tr>
         </tbody>
     </table>
 </div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/script.js}"></script>
+
 </body>
 </html>

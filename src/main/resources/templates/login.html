@@ -5,14 +5,74 @@
     <title>Login Page</title>
 
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: rgb(217,240,250);
+            font-family: 'Gotham';
+            justify-content: space-between;
+        }
 
+        .footer {
+            color: white;
+            background-color: rgb(35, 35, 39);
+            height: 120px;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            left: 0;
+            bottom: 0;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .footer .text {
+            font-size: 12px;
+        }
+
+        nav {
+            background-color: #009fe3;
+            width: 100%;
+            display: flex;
+            justify-content: baseline;
+            gap: 15px;
+        }
+
+        .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 500px;
+        }
+
+        .form-group {
+        width: 1000px;
+        }
+
+        a:hover {
+        text-decoration: none;
+        color: rgb(232,232,232);
+        }
+
+        .logowanie{
+            border-radius: 15px;
+            padding:7px;
+            color: rgb(232,232,23 r2);
+            background-color: rgb(16,79,156);
+            margin-left: 15px;
+        }
+
+    </style>
 </head>
 <body>
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-    <div class="container">
-        <a class="navbar-brand" href="/">BDBT Spring Boot Project - Part II</a>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Hurtownia Części Elektronicznych</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -21,14 +81,14 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
 
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/index}">Home</a>
-                </li>
-
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Login
+                    <a class="nav-link" th:href="@{/index}">Strona Główna
                         <span class="sr-only">(current)</span>
                     </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link logowanie" th:href="@{/main}">Logowanie</a></a>
                 </li>
 
             </ul>
@@ -55,7 +115,7 @@
                 </div>
 
                 <div th:if="${param.error}" style="color:red; margin-bottom:15px">
-                    ERROR: Invalid username or password!
+                    Błąd: złe hasło lub login!
                 </div>
 
                 <button class="btn btn-primary" type="submit" value="Sign In">Login</button>
@@ -65,6 +125,14 @@
 
         </div>
     </div>
+</div>
+
+<div class="footer">
+    <div class="text">ZatDo Sp. z o.o.</div>
+    <div class="text">Telefon: 111222333</div>
+    <div class="text">e-mail: ZatDo@wp.pl</div>
+    <div class="text">Adres: 91-230 Łódź</div>
+    <div class="text">ul.Lechicka 102</div>
 </div>
 
 

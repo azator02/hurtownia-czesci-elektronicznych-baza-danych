@@ -54,13 +54,21 @@
       <td th:text = "${klient.login}">Login</td>
       <td th:text = "${klient.haslo}">Haslo</td>
       <td>
-        <a th:href="@{'editKlienci/' + ${klient.nrKlienta}}">Edytuj</a>
+        <form method="post">
+          <a th:href="@{'editKlienci/' + ${klient.nrKlienta}}">Edytuj</a>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <a th:href="@{'deleteKlienci/' + ${klient.nrKlienta}}">Usuń</a>
+          <a th:href="@{'deleteKlienci/' + ${klient.nrKlienta}}", onclick="successfullyDeletedTable()">Usuń</a>
+        <form>
       </td>
     </tr>
     </tbody>
   </table>
 </div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/script.js}"></script>
+
 </body>
 </html>

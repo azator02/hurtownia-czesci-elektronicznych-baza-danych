@@ -31,8 +31,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .withUser("Sobotka")
                 .password("Sobotka")
-                .roles("USER");
-//                .roles("USobotka");
+                .roles("USER", "USobotka");
+
     }
     @Bean
     public PasswordEncoder getPasswordEncoder() { return NoOpPasswordEncoder.getInstance();
@@ -48,11 +48,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/tabela_hurtownie").access("hasRole('ADMIN')")
                 .antMatchers("/tabela_klienci").access("hasRole('ADMIN')")
                 .antMatchers("/tabela_produkty").access("hasRole('ADMIN')")
+
+                .antMatchers("/newHurtownie").access("hasRole('ADMIN')")
+                .antMatchers("/newProdukty").access("hasRole('ADMIN')")
+                .antMatchers("/newKlienci").access("hasRole('ADMIN')")
+
+
+                .antMatchers("/deleteHurtownie/{nrHurtowni}").access("hasRole('ADMIN')")
+                .antMatchers("/deleteProdukty/{nrProduktu}").access("hasRole('ADMIN')")
+                .antMatchers("/deleteKlienci/{nrKlienta}").access("hasRole('ADMIN')")
+
+                .antMatchers("/editKlienci/300").access("hasAnyRole('USER', 'ADMIN')")
+                .antMatchers("/editKlienci/147").access("hasAnyRole('UPi', 'ADMIN')")
+                .antMatchers("/editKlienci/148").access("hasAnyRole('Ukorek', 'ADMIN')")
+                .antMatchers("/editKlienci/149").access("hasAnyRole('USobotka', 'ADMIN')")
+
                 .antMatchers("/main_user").access("hasRole('USER')")
                 .antMatchers("/moje_dane/Pi").access("hasRole('UPi')")
                 .antMatchers("/moje_dane/Korek").access("hasRole('UKorek')")
-//                .antMatchers("/moje_dane/Korek").access("")
-//                .antMatchers("/moje_dane/Sobotka").access("")
+                .antMatchers("/moje_dane/Sobotka").access("hasRole('USobotka')")
                 .and()
                 .formLogin()
                 .loginPage("/login")
