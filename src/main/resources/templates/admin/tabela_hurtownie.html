@@ -4,32 +4,169 @@
 <head>
   <meta charset="UTF-8">
   <title>Hurtownia części elektronicznych</title>
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
   <style>
-    .przycisk {
+    body {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background-color: rgb(217,240,250);
+        font-family: 'Gotham';
+        justify-content: space-between;
+      }
+      table, th, td {
+          border: 4px solid;
+          border-color: rgb(148,25,74);
+          background-color: rgb(76,120,186);
+          color: rgb(232,232,232);
+          margin-bottom: 250px;
+      }
+      .linki{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+      nav {
+        background-color: #009fe3;
+        width: 100%;
+        display: flex;
+        justify-content: baseline;
+        gap: 15px;
+      }
+
+       a, a:focus, a:active {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    a:hover {
+      text-decoration: none;
+      color: rgb(148,25,74);
+    }
+
+    .linki_wroc {
       display: flex;
+      gap: 10px;
+      color: rgb(232,232,232);
+    }
+
+    .linki_wprowadz {
+      display: flex;
+      gap: 10px;
+      color: rgb(232,232,232);
+      display:flex;
       justify-content: center;
-      margin-top: 25px;
+      align-items: center;
+      width: 250px;
     }
-    button {
-      background-color: rgb(207, 205, 42);
-      width: 100px;
+
+    .footer {
+            color: white;
+            background-color: rgb(35, 35, 39);
+            height: 120px;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            left: 0;
+            bottom: 0;
+            flex-direction: column;
+            width: 100%;
+        }
+    .footer .text {
+      font-size: 12px;
     }
-    button a{
-      color: black;
+
+    .wroc {
+      display: flex;
+      border-radius: 15px;
+      padding:7px;
+      color: rgb(232,232,232);
+      background-color: rgb(16,79,156);
+      margin-left: 15px;
+      width: 75px;
+      justify-content: center;
+    }
+
+    .edytuj {
+      display: flex;
+      border-radius: 15px;
+      padding:7px;
+      color: rgb(232,232,232);
+      background-color: rgb(16,79,156);
+      margin-left: 15px;
+      width: 75px;
+      justify-content: center;
+      margin-bottom: 250px;
+    }
+    .logowanie{
+        border-radius: 15px;
+        padding:7px;
+        color: rgb(232,232,23 r2);
+        background-color: rgb(16,79,156);
+        margin-left: 15px;
+    }
+    .wprowadz {
+      display: flex;
+      border-radius: 15px;
+      padding:7px;
+      color: rgb(232,232,232);
+      background-color: rgb(16,79,156);
+      width: 300px;
+      justify-content: center;
+      margin-bottom: 35px;
     }
   </style>
 </head>
 <body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <div class="container">
+    <a class="navbar-brand" href="/">Hurtownia Części Elektronicznych</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/index}">Strona Główna</a>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" th:inline="text" style="color:lightskyblue;">Jesteś zalogowany jako <b
+                  style="text-transform:capitalize">[[${#httpServletRequest.remoteUser}]]</b></a>
+        </li>
+        <form method="post" th:action="@{/index}">
+          <button class="btn btn-primary logowanie" type="submit" onclick="successfullyLogout()" value="Sign Out">Wyloguj
+          </button>
+        </form>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="linki_wroc">
+  <a class="link wroc" th:href="@{'main_admin'}">Wróć</a>
+</div>
+
+
 
 <div align="center">
   <!--Page header-->
   <h1>Hurtownie</h1>
 
   <!--Entry to new page-->
-  <a href="/newHurtownie">Wprowadź nową hurtownie</a>
+  <div class="linki_wprowadz">
+    <a class="wprowadz" href="/newHurtownie">Wprowadź nową hurtownie</a>
+  </div>
 
-  <!--Break line-->
-  <br/><br/>
+
 
   <!-- Table -->
   <table border = "1" cellpadding = "20">
@@ -62,9 +199,16 @@
     </tbody>
   </table>
 </div>
-<div class="przycisk">
-  <button><a th:href="@{'main_admin'}">Wróć</a></button>
+
+
+<div class="footer">
+  <div class="text">ZatDo Sp. z o.o.</div>
+  <div class="text">Telefon: 111222333</div>
+  <div class="text">e-mail: ZatDo@wp.pl</div>
+  <div class="text">Adres: 91-230 Łódź</div>
+  <div class="text">ul.Lechicka 102</div>
 </div>
+
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>

@@ -5,38 +5,161 @@
   <meta charset="UTF-8">
   <title>Hurtownia części elektronicznych</title>
 
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
   <style>
-    .linki{
+    body {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background-color: rgb(217,240,250);
+        font-family: 'Gotham';
+        justify-content: space-between;
+      }
+      table, th, td {
+          border: 4px solid;
+          border-color: rgb(148,25,74);
+          background-color: rgb(76,120,186);
+          color: rgb(232,232,232);
+          margin-bottom: 250px;
+      }
+      .linki{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+      nav {
+        background-color: #009fe3;
+        width: 100%;
+        display: flex;
+        justify-content: baseline;
+        gap: 15px;
+      }
+
+       a, a:focus, a:active {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    a:hover {
+      text-decoration: none;
+      color: rgb(148,25,74);
+    }
+
+    .linki_wroc {
       display: flex;
+      gap: 10px;
+      color: rgb(232,232,232);
+    }
+
+    .linki_wprowadz {
+      display: flex;
+      gap: 10px;
+      color: rgb(232,232,232);
+      display:flex;
       justify-content: center;
       align-items: center;
-      gap: 10px;
+      width: 250px;
     }
-    .link {
-      margin-bottom: 15px;
-      border-radius: 5px;
-      max-width: 1000px;
-      padding: 10px;
-      background-color: rgb(0, 157, 255);
-      color: azure;
-      font-weight: bold;
-      margin-down: 50px;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 10px;
+
+    .footer {
+            color: white;
+            background-color: rgb(35, 35, 39);
+            height: 120px;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            left: 0;
+            bottom: 0;
+            flex-direction: column;
+            width: 100%;
+        }
+    .footer .text {
+      font-size: 12px;
+    }
+
+    .wroc {
+      display: flex;
+      border-radius: 15px;
+      padding:7px;
+      color: rgb(232,232,232);
+      background-color: rgb(16,79,156);
+      margin-left: 15px;
+      width: 75px;
+      justify-content: center;
+    }
+
+    .edytuj {
+      display: flex;
+      border-radius: 15px;
+      padding:7px;
+      color: rgb(232,232,232);
+      background-color: rgb(16,79,156);
+      margin-left: 15px;
+      width: 75px;
+      justify-content: center;
+      margin-bottom: 250px;
+    }
+    .logowanie{
+        border-radius: 15px;
+        padding:7px;
+        color: rgb(232,232,23 r2);
+        background-color: rgb(16,79,156);
+        margin-left: 15px;
+    }
+    .wprowadz {
+      display: flex;
+      border-radius: 15px;
+      padding:7px;
+      color: rgb(232,232,232);
+      background-color: rgb(16,79,156);
+      width: 300px;
+      justify-content: center;
+      margin-bottom: 35px;
+    }
+
+    h1 {
+    margin-bottom: 25px;
     }
   </style>
-
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Hurtownia Części Elektronicznych</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
 
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Strona Główna
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link logowanie" th:href="@{/main}">Logowanie</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="linki_wroc">
+  <a class="link wroc" th:href="@{'/index'}">Wróć</a>
+</div>
 <div align="center">
   <!--Page header-->
   <h1>Adres</h1>
 
 
-  <div class="linki">
-    <a class="link" th:href="@{'/index/'}">Wróć</a>
-  </div>
   <!-- Table -->
   <table border = "1" cellpadding = "20">
     <!-- border – obramowanie, cellpadding – rozmiar komórki-->
@@ -60,6 +183,12 @@
     </tbody>
   </table>
 </div>
-
+<div class="footer">
+  <div class="text">ZatDo Sp. z o.o.</div>
+  <div class="text">Telefon: 111222333</div>
+  <div class="text">e-mail: ZatDo@wp.pl</div>
+  <div class="text">Adres: 91-230 Łódź</div>
+  <div class="text">ul.Lechicka 102</div>
+</div>
 </body>
 </html>

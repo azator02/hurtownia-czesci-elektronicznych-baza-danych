@@ -43,7 +43,7 @@
             display: flex;
             justify-content: baseline;
             gap: 15px;
-            }
+        }
 
         .oferta {
             align-self: center;
@@ -84,11 +84,15 @@
         }
 
 
-<!--        .hero {-->
-<!--        background-color: rgb(250,196,47)-->
-<!--        display: flex;-->
-<!--        display-column: column;-->
-<!--        }-->
+    a, a:focus, a:active {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    a:hover {
+      text-decoration: none;
+      color: rgb(148,25,74);
+    }
 
 
     </style>
@@ -124,7 +128,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link logowanie" th:href="@{/main}">Logowanie</a></a>
+                    <a class="nav-link logowanie" th:href="@{/main}">Logowanie</a>
                 </li>
 
             </ul>

@@ -3,7 +3,7 @@ function successfullyLogout(){
 }
 
 function successfullyDeletedTable(){
-    alert("Pomyślnie usunięto tabelę");
+    alert("Pomyślnie usunięto rekord");
 }
 
 function tryAgain(){
