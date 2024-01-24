@@ -4,14 +4,133 @@
 <head>
   <meta charset="UTF-8">
   <title>Edycja produktu</title>
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+  <style>
+    body {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: rgb(217,240,250);
+            font-family: 'Gotham';
+            justify-content: space-between;
+    }
+
+    nav {
+      background-color: #009fe3;
+      width: 100%;
+      display: flex;
+      justify-content: baseline;
+      gap: 15px;
+    }
+
+     a, a:focus, a:active {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    a:hover {
+      text-decoration: none;
+      color: rgb(148,25,74);
+    }
+
+    .footer {
+            color: white;
+            background-color: rgb(35, 35, 39);
+            height: 120px;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            left: 0;
+            bottom: 0;
+            flex-direction: column;
+            width: 100%;
+        }
+    .footer .text {
+      font-size: 12px;
+    }
+
+    .wroc {
+      display: flex;
+      border-radius: 15px;
+      padding:7px;
+      color: rgb(232,232,232);
+      background-color: rgb(16,79,156);
+      margin-left: 15px;
+      width: 75px;
+      justify-content: center;
+    }
+
+    .logowanie{
+        border-radius: 15px;
+        padding:7px;
+        color: rgb(232,232,23 r2);
+        background-color: rgb(16,79,156);
+        margin-left: 15px;
+    }
+
+    table, th, td {
+        border: 4px solid;
+        border-color: rgb(148,25,74);
+        background-color: rgb(76,120,186);
+        color: rgb(232,232,232);
+        margin-bottom: 200px;
+    }
+
+    .zapisz {
+        border-radius: 15px;
+        padding:7px;
+        color: rgb(232,232,23 r2);
+        background-color: rgb(16,79,156);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .wiersz {
+      display: flex;
+      justify-content: center;
+    }
+
+    h1 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    }
+
+
+  </style>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Hurtownia Części Elektronicznych</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
 
+        <li class="nav-item active">
+          <a class="nav-link" th:href="@{/index}">Strona Główna
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+
+          <a class="nav-link logowanie" th:href="@{/main}">Logowanie</a>
+
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
 <div align="center">
   <!--Page header-->
   <h1>Edytuj produkt</h1>
-  <!--end line/newline-->
-  <br/>
+
   <form action="#" th:action="@{/updateProdukty}" th:object="${produkt}" method="post">
     <!--table-->
     <table border = "1" cellpadding="10">
@@ -46,11 +165,21 @@
       </tr>
       <!--button saveHurtownie-->
       <tr>
-        <td colspan="2"><button type="submit">Zapisz</button></td>
+        <td colspan="2">
+          <div class="wiersz">
+            <button class="btn btn-primary zapisz" type="submit">Zapisz</button>
+          </div>
+        </td>
       </tr>
     </table>
   </form>
 </div>
-
+<div class="footer">
+  <div class="text">ZatDo Sp. z o.o.</div>
+  <div class="text">Telefon: 111222333</div>
+  <div class="text">e-mail: ZatDo@wp.pl</div>
+  <div class="text">Adres: 91-230 Łódź</div>
+  <div class="text">ul.Lechicka 102</div>
+</div>
 </body>
 </html>

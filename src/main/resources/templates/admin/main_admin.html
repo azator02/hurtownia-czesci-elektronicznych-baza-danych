@@ -6,31 +6,76 @@
 
   <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
   <style>
-        .tabele ul {
-            display: flex;
-            flex-direction: row;
-            margin-top: 70px;
-            margin-left: 100px;
-            margin-right: 100px;
-            list-style-type: none;
-            padding: 0px;
-            justify-content: space-around;
-            align-items: center;
-        }
+      body {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background-color: rgb(217,240,250);
+      font-family: 'Gotham';
+      justify-content: space-between;
+    }
+      .linki {
+      display: flex;
+      gap: 50px;
+      align-self: center;
+      margin-bottom: 250px;
+      color: rgb(232,232,232);
+      margin-bottom: 100px;
+    }
 
-        .el_tabela {
-            margin-bottom: 15px;
-            border-radius: 5px;
-            max-width: 1000px;
-            padding: 20px;
-            background-color: rgb(0, 157, 255);
-            color: azure;
-            font-weight: bold;
-            margin-down: 50px;
-            font-family: Arial, Helvetica, sans-serif;
+    a, a:focus, a:active {
+      text-decoration: none;
+      color: inherit;
+    }
 
-            font-size: 20px;
-        }
+    a:hover {
+      text-decoration: none;
+      color: rgb(148,25,74);
+    }
+
+    .link {
+            align-self: center;
+            border-radius: 50px;
+            background-color: rgb(16,79,156);
+            padding: 30px;
+            margin-top: 45px;
+            color: rgb(232,232,232);
+    }
+
+    .link > a {
+        text-decoration: none;
+        color: inherit;
+        font-size: 32px;
+        color: rgb(232,232,232);
+
+    }
+
+
+
+    .logowanie{
+        border-radius: 15px;
+        padding:7px;
+        color: rgb(232,232,23 r2);
+        background-color: rgb(16,79,156);
+        margin-left: 15px;
+    }
+
+    .footer {
+        color: white;
+        background-color: rgb(35, 35, 39);
+        height: 120px;
+        padding: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        left: 0;
+        bottom: 0;
+        flex-direction: column;
+        width: 100%;
+    }
+
+
+
 
 
         .footer {
@@ -49,7 +94,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
   <div class="container">
-    <a class="navbar-brand" href="/">BDBT Spring Boot Project - Part II</a>
+    <a class="navbar-brand" href="/">Hurtownia Części Elektronicznych</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
             aria-controls="navbarResponsive"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -59,25 +104,20 @@
       <ul class="navbar-nav ml-auto">
 
         <li class="nav-item">
-          <a class="nav-link" th:href="@{/index}">Home</a>
+          <a class="nav-link" th:href="@{/index}">Strona Główna</a>
         </li>
 
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Main
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
 
         <li class="nav-item">
-          <a class="nav-link" th:inline="text" style="color:lightskyblue;">You are logged in as <b
+          <a class="nav-link" th:inline="text" style="color:lightskyblue;">Jesteś zalogowany jako <b
                   style="text-transform:capitalize">[[${#httpServletRequest.remoteUser}]]</b></a>
         </li>
+        <form method="post" th:action="@{/index}">
+          <button class="btn btn-primary logowanie" type="submit" onclick="successfullyLogout()" value="Sign Out">Wyloguj
+          </button>
+        </form>
 
       </ul>
-      <form method="post" th:action="@{/index}">
-      <button class="btn btn-primary" type="submit" onclick="successfullyLogout()" value="Sign Out">Logout
-      </button>
-      </form>
     </div>
   </div>
 </nav>
@@ -99,20 +139,23 @@
 <div class="footer">
   Project by Agata Zatorska and Anh Quan Do
 </div>
-<div class=tabele>
-  <ul>
-    <li>
-      <a class = el_tabela th:href="@{/tabela_hurtownie}">Tabela Hurtownia</a>
-    </li>
-    <li>
-      <a class="el_tabela" th:href="@{/tabela_produkty}">Tabela Produkty</a>
-    </li>
-    <li>
-      <a class="el_tabela" th:href="@{/tabela_klienci}">Tabela Klienci</a>
-    </li>
-  </ul>
+<div class=linki>
+
+      <a class = "link" th:href="@{/tabela_hurtownie}">Tabela Hurtownia</a>
+
+      <a class="link" th:href="@{/tabela_produkty}">Tabela Produkty</a>
+
+      <a class="link" th:href="@{/tabela_klienci}">Tabela Klienci</a>
+
 </div>
 
+<div class="footer">
+  <div class="text">ZatDo Sp. z o.o.</div>
+  <div class="text">Telefon: 111222333</div>
+  <div class="text">e-mail: ZatDo@wp.pl</div>
+  <div class="text">Adres: 91-230 Łódź</div>
+  <div class="text">ul.Lechicka 102</div>
+</div>
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
